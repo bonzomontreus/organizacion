@@ -24,7 +24,7 @@ loop0_60:
 	mov w5, 0xffe0
 	sub w4,w10,w5
 	cbnz x4,loop0_60	   // If not end row jump keep painting
-	cbz x4, loop60_120
+	// cbz x4, loop60_120
 
 loop60_120:
 	// rojo 32 a 0
@@ -35,21 +35,21 @@ loop60_120:
 	mov w5,0x07e0
 	sub w4,w10,w5
 	cbnz x4,loop60_120	   // If not end row jump keep painting
-	cbz x4, loop120_180
+	// cbz x4, loop120_180
 
 loop120_180:
 	// azul 0 a 32
 	sturh w10,[x0]
 	add x0,x0,2				// next pixel to right
-	sub x1,x1,0x1	   		   // decrement X counter
+	sub x1,x1,1	   		   // decrement X counter
 	add w10,w10,0x1
 	mov w5,0x07ff
 	sub w4,w10,w5
 	cbnz x4,loop120_180	   // If not end row jump keep painting
-	cbz x4, loop180_240
+	// cbz x4, loop180_240
 
 loop180_240:
-	// verde 32 a 0
+	// verde 64 a 0
 	sturh w10,[x0]
 	add x0,x0,2				// next pixel to right
 	sub x1,x1,1	   		   // decrement X counter
@@ -57,18 +57,18 @@ loop180_240:
 	mov w5,0x001f
 	sub w4,w10,w5
 	cbnz x4,loop180_240	   // If not end row jump keep painting
-	cbz x4, loop240_300
+	//cbz x4, loop240_300
 
 loop240_300:
 	// rojo 0 a 32
 	sturh w10,[x0]
 	add x0,x0,2				// next pixel to right
 	sub x1,x1,1	   		   // decrement X counter
-	add w10,w10,0x8000
+	add w10,w10,0x0800
 	mov w5,0xf81f
-	sub w4,w10,w5
-	cbnz x4,loop240_300	   // If not end row jump keep painting
-	cbz x4, loop300_360
+	sub w4,w5,w10
+	cbnz w4,loop240_300	   // If not end row jump keep painting
+	//cbz x4, loop300_360
 
 loop300_360:
 	// azul 32 a 0
@@ -77,7 +77,7 @@ loop300_360:
 	sub x1,x1,1	   		   // decrement X counter
 	sub w10,w10,0x1
 	sub w4,w10,0x8000
-	cbnz x4,loop300_360	   // If not end row jump keep painting
+	cbnz w4,loop300_360	   // If not end row jump keep painting
 	sub x2,x2,1	   			// Decrement Y counter
 	cbnz x2,loop0_60	   // if not last row, jump
 
