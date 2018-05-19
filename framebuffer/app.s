@@ -1,36 +1,88 @@
 .globl app
 app:
 	// X0 contiene la direccion base del framebuffer
-	
+
 	//---------------- CODE HERE ------------------------------------
-	
+
 	mov w10, 0xF800    // 0xF800 = RED
-	mov x2,512         // Y Size 
+	mov w11, 0x001F // 0x001F == BLUE
+	mov w12, 0x07E0 // 0x07E0 == GREEN
+	mov x4, 1 // var temporal, condicional de salto
+
+	// Numero son 510-425-340-255-170-85
+
+	mov x2,512         // Y Size
 	loop1:
 	mov x1,512         // X Size
-	mov x3, 256
-	mov w11, 0x001F // 0x001f == BLUE
-loop0:
-	sturh w10,[x0]	   // Set color of pixel N
-	add x0,x0,2	   // Next pixel
-	sub x1,x1,1	   // decrement X counter
-	sub x3, x1, x3 // check if x3 is 256
-	cbz x3, loop2
-	cbnz x1,loop0	   // If not end row jump
-	sub x2,x2,1	   // Decrement Y counter
-	cbnz x2,loop1	   // if not last row, jump
 
-loop2:
-    sturh w11,[x0]	   // Set color of pixel N
-	add x0,x0,2	   // Next pixel
-	sub x1,x1,1	   // decrement X counter
-	cbnz x1,loop2	   // If not end row jump
-	sub x2,x2,1	   // Decrement Y counter
-	cbnz x2,loop1	   // if not last row, jump
+loop0_60:
+	//verde 0 a 64
+	sturh w10,[x0]
+	add x0,x0,2			   // next pixel to right
+	sub x1,x1,1	   		   // decrement X counter
+	add w10, w10, 0x0040  // incremento en 2 numeros el verde
+	mov w5, 0xffe0
+	sub w4,w10,w5
+	cbnz x4,loop0_60	   // If not end row jump keep painting
+	cbz x4, loop60_120
+
+loop60_120:
+	// rojo 32 a 0
+	sturh w10,[x0]
+	add x0,x0,2				// next pixel to right
+	sub x1,x1,1	   		   // decrement X counter
+	sub w10,w10,0x0800		// resto 1 numeros el rojo
+	mov w5,0x07e0
+	sub w4,w10,w5
+	cbnz x4,loop60_120	   // If not end row jump keep painting
+	cbz x4, loop120_180
+
+loop120_180:
+	// azul 0 a 32
+	sturh w10,[x0]
+	add x0,x0,2				// next pixel to right
+	sub x1,x1,0x1	   		   // decrement X counter
+	add w10,w10,0x1
+	mov w5,0x07ff
+	sub w4,w10,w5
+	cbnz x4,loop120_180	   // If not end row jump keep painting
+	cbz x4, loop180_240
+
+loop180_240:
+	// verde 32 a 0
+	sturh w10,[x0]
+	add x0,x0,2				// next pixel to right
+	sub x1,x1,1	   		   // decrement X counter
+	sub w10,w10,0x0040
+	mov w5,0x001f
+	sub w4,w10,w5
+	cbnz x4,loop180_240	   // If not end row jump keep painting
+	cbz x4, loop240_300
+
+loop240_300:
+	// rojo 0 a 32
+	sturh w10,[x0]
+	add x0,x0,2				// next pixel to right
+	sub x1,x1,1	   		   // decrement X counter
+	add w10,w10,0x8000
+	mov w5,0xf81f
+	sub w4,w10,w5
+	cbnz x4,loop240_300	   // If not end row jump keep painting
+	cbz x4, loop300_360
+
+loop300_360:
+	// azul 32 a 0
+	sturh w10,[x0]
+	add x0,x0,2				// next pixel to right
+	sub x1,x1,1	   		   // decrement X counter
+	sub w10,w10,0x1
+	sub w4,w10,0x8000
+	cbnz x4,loop300_360	   // If not end row jump keep painting
+	sub x2,x2,1	   			// Decrement Y counter
+	cbnz x2,loop0_60	   // if not last row, jump
 
 	//---------------------------------------------------------------
-	
-        // Infinite Loop 
-InfLoop: 
+
+        // Infinite Loop
+InfLoop:
 	b InfLoop
-	
