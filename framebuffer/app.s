@@ -9,7 +9,7 @@ app:
 	mov w12, 0x07E0 // 0x07E0 == GREEN
 	mov x4, 1 // var temporal, condicional de salto
 
-	// Numero son 510-425-340-255-170-85
+	// Numero son 510-425-340- 255-170-85
 
 	mov x2,512         // Y Size
 	loop1:
@@ -20,7 +20,7 @@ loop0_60:
 	sturh w10,[x0]
 	add x0,x0,2			   // next pixel to right
 	sub x1,x1,1	   		   // decrement X counter
-	add w10, w10, 0x0040  // incremento en 2 numeros el verde
+	add w10, w10, 0x0020  // incremento en 2 numeros el verde
 	mov w5, 0xffe0
 	sub w4,w10,w5
 	cbnz x4,loop0_60	   // If not end row jump keep painting
@@ -53,7 +53,7 @@ loop180_240:
 	sturh w10,[x0]
 	add x0,x0,2				// next pixel to right
 	sub x1,x1,1	   		   // decrement X counter
-	sub w10,w10,0x0040
+	sub w10,w10,0x0020
 	mov w5,0x001f
 	sub w4,w10,w5
 	cbnz x4,loop180_240	   // If not end row jump keep painting
@@ -86,3 +86,5 @@ loop300_360:
         // Infinite Loop
 InfLoop:
 	b InfLoop
+Inf:
+	b Inf
