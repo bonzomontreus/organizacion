@@ -3,15 +3,20 @@ app:
 	// X0 contiene la direccion base del framebuffer
 
 	//---------------- CODE HERE ------------------------------------
+	// w10 = Color Rojo
+	// w11 = Color verde
+	// w12 = Color azul
+	// x4 =
+
 
 	mov w10, 0xF800    // 0xF800 = RED
 	mov w11, 0x07E0 // 0x07E0 == GREEN
 	mov w12, 0x001F // 0x001F == BLUE
 
 
-	mov x2,512			// Y Size
+	mov x2,511			// Y Size
 loop1:
-	mov x1, 512			// X Size
+	mov x1, 511			// X Size
 	mov w14, w10			// inicializa con rojo
 	mov x4, 31 			// var temporal, condicional de salto
 
@@ -23,7 +28,7 @@ loop0_60:
 	add x0, x0, 2			 	// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
 	cbz x1, decrementary 	// si me quede sin pantalla, restar 1 a y y volver
-							// a setear x a 512
+							// a setear x a 511
 
 	add w14, w14, 0x40		// incremento en 2 numeros el verde
 	sub x4, x4, 1
@@ -103,8 +108,12 @@ loop300_360:
 	cbnz x4,loop300_360	   // If not end row jump keep painting
 
 decrementary:
-	sub x2,x2,1	   			// Decrement Y counter
+	sub x2,x2,1	    			// Decrement Y counter
 	//mov w14,w10
+	sub x7, 512, x2
+	add x7, x7, 1
+	mov x8, 512
+	mul x0, x7, x8
 	cbnz x2,loop1	   // if not last row, jump
 
 	//---------------------------------------------------------------
