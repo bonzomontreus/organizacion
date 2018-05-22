@@ -13,7 +13,7 @@ app:
 loop1:
 	mov x1, 512			// X Size
 	mov w14, w10			// inicializa con rojo
-	mov x4, 31			// var temporal, condicional de salto
+	mov x4, 31 			// var temporal, condicional de salto
 
 loop0_60:
 	//verde 0 a 64
@@ -104,7 +104,7 @@ loop300_360:
 
 decrementary:
 	sub x2,x2,1	   			// Decrement Y counter
-	mov w14,w10
+	//mov w14,w10
 	cbnz x2,loop1	   // if not last row, jump
 
 	//---------------------------------------------------------------
