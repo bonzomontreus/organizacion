@@ -13,7 +13,7 @@ app:
 	mov w11, 0x07E0 // 0x07E0 == GREEN
 	mov w12, 0x001F // 0x001F == BLUE
 
-
+	
 	mov x2,511			// Y Size
 loop1:
 	mov x1, 511			// X Size
@@ -27,7 +27,7 @@ loop0_60:
 	sturh w14, [x0]
 	add x0, x0, 2			 	// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
-	cbz x1, decrementary 	// si me quede sin pantalla, restar 1 a y y volver
+	//cbz x1, decrementary 	// si me quede sin pantalla, restar 1 a y y volver
 							// a setear x a 511
 
 	add w14, w14, 0x40		// incremento en 2 numeros el verde
@@ -44,7 +44,7 @@ loop60_120:
 	sturh w14, [x0]
 	add x0, x0, 2				// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
-	cbz x1, decrementary
+	//cbz x1, decrementary
 	sub w14, w14, 0x800		// resto 1 numeros el rojo
 	sub x4, x4, 1
 	cbnz x4, loop60_120	   // If not end row jump keep painting
@@ -73,7 +73,7 @@ loop180_240:
 	sturh w14, [x0]
 	add x0, x0, 2				// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
-	cbz x1, decrementary
+	//cbz x1, decrementary
 	sub w14, w14, 0x40
 	sub x4, x4, 1
 	cbnz x4, loop180_240	   // If not end row jump keep painting
@@ -87,7 +87,7 @@ loop240_300:
 	sturh w14,[x0]
 	add x0, x0, 2				// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
-	cbz x1, decrementary
+	//cbz x1, decrementary
 	add w14, w14, 0x800
 	sub x4, x4, 1
 	cbnz x4, loop240_300	   // If not end row jump keep painting
@@ -102,7 +102,7 @@ loop300_360:
 	sturh w14,[x0]
 	add x0,x0,2				// next pixel to right
 	sub x1,x1,1	   		   // decrement X counter
-	cbz x1,decrementary
+	//cbz x1,decrementary
 	sub w14,w14,0x1
 	sub x4,x4,1
 	cbnz x4,loop300_360	   // If not end row jump keep painting
@@ -110,10 +110,11 @@ loop300_360:
 decrementary:
 	sub x2,x2,1	    			// Decrement Y counter
 	//mov w14,w10
-	sub x7, 512, x2
-	add x7, x7, 1
-	mov x8, 512
-	mul x0, x7, x8
+	//mov x8, 512
+	//sub x7, 512, x2
+	add x7, x1, x1
+	//mov x8, 512
+	add x0, x7, x0
 	cbnz x2,loop1	   // if not last row, jump
 
 	//---------------------------------------------------------------
