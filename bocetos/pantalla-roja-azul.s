@@ -1,11 +1,11 @@
 .globl app
 app:
 	// X0 contiene la direccion base del framebuffer
-	
+
 	//---------------- CODE HERE ------------------------------------
-	
+
 	mov w10, 0xF800    // 0xF800 = RED
-	mov x2,512         // Y Size 
+	mov x2,512         // Y Size
 	loop1:
 	mov x1,512         // X Size
 	mov x3, 256
@@ -29,8 +29,7 @@ loop2:
 	cbnz x2,loop1	   // if not last row, jump
 
 	//---------------------------------------------------------------
-	
-        // Infinite Loop 
-InfLoop: 
+
+        // Infinite Loop
+InfLoop:
 	b InfLoop
-	
