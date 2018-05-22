@@ -20,84 +20,92 @@ Desensamblado de la sección .text:
   20:	d2804001 	mov	x1, #0x200                 	// #512
   24:	2a0a03ee 	mov	w14, w10
   28:	d28003e4 	mov	x4, #0x1f                  	// #31
+  2c:	d1000442 	sub	x2, x2, #0x1
+  30:	f100005f 	cmp	x2, #0x0
+  34:	540006c0 	b.eq	10c <InfLoop>  // b.none
 
-000000000000002c <loop0_60>:
-  2c:	7800000e 	sturh	w14, [x0]
-  30:	91000800 	add	x0, x0, #0x2
-  34:	d1000421 	sub	x1, x1, #0x1
-  38:	110101ce 	add	w14, w14, #0x40
-  3c:	d1000484 	sub	x4, x4, #0x1
-  40:	b5ffff64 	cbnz	x4, 2c <loop0_60>
-  44:	d28003e4 	mov	x4, #0x1f                  	// #31
-  48:	0b0b014e 	add	w14, w10, w11
+0000000000000038 <loop0_60>:
+  38:	7800000e 	sturh	w14, [x0]
+  3c:	91000800 	add	x0, x0, #0x2
+  40:	d1000421 	sub	x1, x1, #0x1
+  44:	110101ce 	add	w14, w14, #0x40
+  48:	d1000484 	sub	x4, x4, #0x1
+  4c:	b5ffff64 	cbnz	x4, 38 <loop0_60>
+  50:	d28003e4 	mov	x4, #0x1f                  	// #31
 
-000000000000004c <loop60_120>:
-  4c:	7800000e 	sturh	w14, [x0]
-  50:	91000800 	add	x0, x0, #0x2
-  54:	d1000421 	sub	x1, x1, #0x1
-  58:	512001ce 	sub	w14, w14, #0x800
-  5c:	d1000484 	sub	x4, x4, #0x1
-  60:	b5ffff64 	cbnz	x4, 4c <loop60_120>
-  64:	d28003e4 	mov	x4, #0x1f                  	// #31
-  68:	2a0b03ee 	mov	w14, w11
+0000000000000054 <loop60_120>:
+  54:	7800000e 	sturh	w14, [x0]
+  58:	91000800 	add	x0, x0, #0x2
+  5c:	d1000421 	sub	x1, x1, #0x1
+  60:	512001ce 	sub	w14, w14, #0x800
+  64:	d1000484 	sub	x4, x4, #0x1
+  68:	b5ffff64 	cbnz	x4, 54 <loop60_120>
+  6c:	d28003e4 	mov	x4, #0x1f                  	// #31
+  70:	2a0b03ee 	mov	w14, w11
 
-000000000000006c <loop120_180>:
-  6c:	7800000e 	sturh	w14, [x0]
-  70:	91000800 	add	x0, x0, #0x2
-  74:	d1000421 	sub	x1, x1, #0x1
-  78:	110005ce 	add	w14, w14, #0x1
-  7c:	d1000484 	sub	x4, x4, #0x1
-  80:	b5ffff64 	cbnz	x4, 6c <loop120_180>
-  84:	d28003e4 	mov	x4, #0x1f                  	// #31
-  88:	0b0b018e 	add	w14, w12, w11
+0000000000000074 <loop120_180>:
+  74:	7800000e 	sturh	w14, [x0]
+  78:	91000800 	add	x0, x0, #0x2
+  7c:	d1000421 	sub	x1, x1, #0x1
+  80:	110005ce 	add	w14, w14, #0x1
+  84:	d1000484 	sub	x4, x4, #0x1
+  88:	b5ffff64 	cbnz	x4, 74 <loop120_180>
+  8c:	d28003e4 	mov	x4, #0x1f                  	// #31
+  90:	0b0b018e 	add	w14, w12, w11
 
-000000000000008c <loop180_240>:
-  8c:	7800000e 	sturh	w14, [x0]
-  90:	91000800 	add	x0, x0, #0x2
-  94:	d1000421 	sub	x1, x1, #0x1
-  98:	510101ce 	sub	w14, w14, #0x40
-  9c:	d1000484 	sub	x4, x4, #0x1
-  a0:	b5ffff64 	cbnz	x4, 8c <loop180_240>
-  a4:	d28003e4 	mov	x4, #0x1f                  	// #31
-  a8:	2a0c03ee 	mov	w14, w12
+0000000000000094 <loop180_240>:
+  94:	7800000e 	sturh	w14, [x0]
+  98:	91000800 	add	x0, x0, #0x2
+  9c:	d1000421 	sub	x1, x1, #0x1
+  a0:	510101ce 	sub	w14, w14, #0x40
+  a4:	d1000484 	sub	x4, x4, #0x1
+  a8:	b5ffff64 	cbnz	x4, 94 <loop180_240>
+  ac:	d28003e4 	mov	x4, #0x1f                  	// #31
+  b0:	2a0c03ee 	mov	w14, w12
 
-00000000000000ac <loop240_300>:
-  ac:	7800000e 	sturh	w14, [x0]
-  b0:	91000800 	add	x0, x0, #0x2
-  b4:	d1000421 	sub	x1, x1, #0x1
-  b8:	112001ce 	add	w14, w14, #0x800
-  bc:	d1000484 	sub	x4, x4, #0x1
-  c0:	b5ffff64 	cbnz	x4, ac <loop240_300>
-  c4:	d28003e4 	mov	x4, #0x1f                  	// #31
-  c8:	0b0c014e 	add	w14, w10, w12
+00000000000000b4 <loop240_300>:
+  b4:	7800000e 	sturh	w14, [x0]
+  b8:	91000800 	add	x0, x0, #0x2
+  bc:	d1000421 	sub	x1, x1, #0x1
+  c0:	112001ce 	add	w14, w14, #0x800
+  c4:	d1000484 	sub	x4, x4, #0x1
+  c8:	b5ffff64 	cbnz	x4, b4 <loop240_300>
+  cc:	d28003e4 	mov	x4, #0x1f                  	// #31
+  d0:	0b0c014e 	add	w14, w10, w12
 
-00000000000000cc <loop300_360>:
-  cc:	7800000e 	sturh	w14, [x0]
-  d0:	91000800 	add	x0, x0, #0x2
-  d4:	d1000421 	sub	x1, x1, #0x1
-  d8:	510005ce 	sub	w14, w14, #0x1
-  dc:	d1000484 	sub	x4, x4, #0x1
-  e0:	b5ffff64 	cbnz	x4, cc <loop300_360>
+00000000000000d4 <loop300_360>:
+  d4:	7800000e 	sturh	w14, [x0]
+  d8:	91000800 	add	x0, x0, #0x2
+  dc:	d1000421 	sub	x1, x1, #0x1
+  e0:	510005ce 	sub	w14, w14, #0x1
+  e4:	d1000484 	sub	x4, x4, #0x1
+  e8:	b5ffff64 	cbnz	x4, d4 <loop300_360>
 
-00000000000000e4 <decrementary>:
-  e4:	d1000442 	sub	x2, x2, #0x1
-  e8:	8b010027 	add	x7, x1, x1
-  ec:	8b0000e0 	add	x0, x7, x0
-  f0:	b5fff982 	cbnz	x2, 20 <loop1>
+00000000000000ec <lala>:
+  ec:	91000800 	add	x0, x0, #0x2
+  f0:	d1000421 	sub	x1, x1, #0x1
+  f4:	b5ffffc1 	cbnz	x1, ec <lala>
+  f8:	17ffffca 	b	20 <loop1>
 
-00000000000000f4 <InfLoop>:
-  f4:	14000000 	b	f4 <InfLoop>
+00000000000000fc <decrementary>:
+  fc:	d1000442 	sub	x2, x2, #0x1
+ 100:	8b010027 	add	x7, x1, x1
+ 104:	8b0000e0 	add	x0, x7, x0
+ 108:	b5fff8c2 	cbnz	x2, 20 <loop1>
+
+000000000000010c <InfLoop>:
+ 10c:	14000000 	b	10c <InfLoop>
 
 Desensamblado de la sección .data:
 
-00000000000000f8 <dirBase>:
-  f8:	40080000 	.inst	0x40080000 ; undefined
-  fc:	00000000 	.inst	0x00000000 ; undefined
+0000000000000110 <dirBase>:
+ 110:	40080000 	.inst	0x40080000 ; undefined
+ 114:	00000000 	.inst	0x00000000 ; undefined
 
 Desensamblado de la sección .debug_line:
 
 0000000000000000 <.debug_line>:
-   0:	00000080 	.inst	0x00000080 ; undefined
+   0:	00000086 	.inst	0x00000086 ; undefined
    4:	00260002 	.inst	0x00260002 ; NYI
    8:	01040000 	.inst	0x01040000 ; undefined
    c:	000d0efb 	.inst	0x000d0efb ; undefined
@@ -106,7 +114,7 @@ Desensamblado de la sección .debug_line:
   18:	00010000 	.inst	0x00010000 ; undefined
   1c:	6e69616d 	rsubhn2	v13.8h, v11.4s, v9.4s
   20:	0000732e 	.inst	0x0000732e ; undefined
-  24:	70610000 	adr	x0, c2027 <dirBase+0xc1f2f>
+  24:	70610000 	adr	x0, c2027 <dirBase+0xc1f17>
   28:	00732e70 	.inst	0x00732e70 ; undefined
   2c:	00000000 	.inst	0x00000000 ; undefined
   30:	00020900 	.inst	0x00020900 ; undefined
@@ -116,20 +124,23 @@ Desensamblado de la sección .debug_line:
   40:	03020421 	.inst	0x03020421 ; undefined
   44:	21212070 	.inst	0x21212070 ; undefined
   48:	21212223 	.inst	0x21212223 ; undefined
-  4c:	24212126 	cmplo	p6.b, p0/z, z9.b, #4
-  50:	21222121 	.inst	0x21222121 ; undefined
-  54:	22212126 	.inst	0x22212126 ; undefined
-  58:	21212121 	.inst	0x21212121 ; undefined
-  5c:	22212126 	.inst	0x22212126 ; undefined
-  60:	21222121 	.inst	0x21222121 ; undefined
-  64:	22212126 	.inst	0x22212126 ; undefined
-  68:	21212121 	.inst	0x21212121 ; undefined
-  6c:	22212126 	.inst	0x22212126 ; undefined
-  70:	21222121 	.inst	0x21222121 ; undefined
-  74:	22212126 	.inst	0x22212126 ; undefined
-  78:	22232121 	.inst	0x22232121 ; undefined
-  7c:	02262121 	.inst	0x02262121 ; undefined
-  80:	01010001 	.inst	0x01010001 ; undefined
+  4c:	28212121 	stnp	w1, w8, [x9, #-248]
+  50:	21242121 	.inst	0x21242121 ; undefined
+  54:	21272221 	.inst	0x21272221 ; undefined
+  58:	21212221 	.inst	0x21212221 ; undefined
+  5c:	21262121 	.inst	0x21262121 ; undefined
+  60:	21212221 	.inst	0x21212221 ; undefined
+  64:	21262122 	.inst	0x21262122 ; undefined
+  68:	21212221 	.inst	0x21212221 ; undefined
+  6c:	21262121 	.inst	0x21262121 ; undefined
+  70:	21212221 	.inst	0x21212221 ; undefined
+  74:	21262122 	.inst	0x21262122 ; undefined
+  78:	21212221 	.inst	0x21212221 ; undefined
+  7c:	21212123 	.inst	0x21212123 ; undefined
+  80:	21222224 	.inst	0x21222224 ; undefined
+  84:	00010226 	.inst	0x00010226 ; undefined
+  88:	La dirección 0x0000000000000088 está fuera de los límites.
+
 
 Desensamblado de la sección .debug_info:
 
@@ -138,7 +149,7 @@ Desensamblado de la sección .debug_info:
    4:	00000002 	.inst	0x00000002 ; undefined
    8:	01080000 	.inst	0x01080000 ; undefined
 	...
-  18:	000000f8 	.inst	0x000000f8 ; undefined
+  18:	00000110 	.inst	0x00000110 ; undefined
 	...
   24:	00000007 	.inst	0x00000007 ; undefined
   28:	00000035 	.inst	0x00000035 ; undefined
@@ -148,7 +159,7 @@ Desensamblado de la sección .debug_info:
 Desensamblado de la sección .debug_abbrev:
 
 0000000000000000 <.debug_abbrev>:
-   0:	10001101 	adr	x1, 220 <dirBase+0x128>
+   0:	10001101 	adr	x1, 220 <dirBase+0x110>
    4:	12011106 	and	w6, w8, #0x8000000f
    8:	1b0e0301 	madd	w1, w24, w14, w0
    c:	130e250e 	sbfiz	w14, w8, #18, #10
@@ -161,7 +172,7 @@ Desensamblado de la sección .debug_aranges:
    4:	00000002 	.inst	0x00000002 ; undefined
    8:	00080000 	.inst	0x00080000 ; undefined
 	...
-  18:	000000f8 	.inst	0x000000f8 ; undefined
+  18:	00000110 	.inst	0x00000110 ; undefined
 	...
 
 Desensamblado de la sección .debug_str:
@@ -172,14 +183,14 @@ Desensamblado de la sección .debug_str:
    8:	656d6f68 	fnmls	z8.h, p3/m, z27.h, z13.h
    c:	766e692f 	.inst	0x766e692f ; undefined
   10:	2d617265 	ldp	s5, s28, [x19, #-248]
-  14:	70706970 	adr	x16, e0d43 <dirBase+0xe0c4b>
+  14:	70706970 	adr	x16, e0d43 <dirBase+0xe0c33>
   18:	6f2f6e65 	.inst	0x6f2f6e65 ; undefined
   1c:	6e616772 	umax	v18.8h, v27.8h, v1.8h
   20:	63617a69 	.inst	0x63617a69 ; undefined
   24:	2f6e6f69 	.inst	0x2f6e6f69 ; undefined
-  28:	706d6574 	adr	x20, dacd7 <dirBase+0xdabdf>
+  28:	706d6574 	adr	x20, dacd7 <dirBase+0xdabc7>
   2c:	6574616c 	fnmls	z12.h, p0/m, z11.h, z20.h
-  30:	366a652f 	tbz	w15, #13, 4cd4 <dirBase+0x4bdc>
+  30:	366a652f 	tbz	w15, #13, 4cd4 <dirBase+0x4bc4>
   34:	554e4700 	.inst	0x554e4700 ; undefined
   38:	20534120 	.inst	0x20534120 ; undefined
   3c:	39322e32 	strb	w18, [x17, #3211]

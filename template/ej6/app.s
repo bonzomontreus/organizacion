@@ -14,6 +14,11 @@ loop1:
 	mov x1, 512			// X Size
 	mov w14, w10			// inicializa con rojo
 	mov x4, 31 			// var temporal, condicional de salto
+	sub x2, x2, 1
+	cmp x2, 0
+	b.EQ InfLoop
+	
+	
 
 loop0_60:
 	//verde 0 a 64
@@ -30,7 +35,7 @@ loop0_60:
 	cbnz x4, loop0_60	   // If not end row jump keep painting
 
 	mov x4, 31
-	add w14, w10, w11  //suma rojo con verde
+	//add w14, w10, w11  //suma rojo con verde
 
 loop60_120:
 	// rojo 32 a 0
@@ -102,10 +107,18 @@ loop300_360:
 	sub x4,x4,1
 	cbnz x4,loop300_360	   // If not end row jump keep painting
 
+lala:
+	add x0,x0,2
+	sub x1, x1, 1
+	cbnz x1, lala
+	b loop1
+
+ 
 decrementary:
 	sub x2,x2,1	   			// Decrement Y counter
 	//mov w14,w10
 	add x7, x1, x1
+	
 	add x0, x7, x0	
 	cbnz x2,loop1	   // if not last row, jump
 
