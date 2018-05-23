@@ -16456,9 +16456,9 @@ Desensamblado de la sección .text:
    100b8:	2a0a03ee 	mov	w14, w10
    100bc:	d28003e4 	mov	x4, #0x1f                  	// #31
    100c0:	d1000442 	sub	x2, x2, #0x1
-   100c4:	d2800043 	mov	x3, #0x2                   	// #2
+   100c4:	d2800063 	mov	x3, #0x3                   	// #3
    100c8:	f100005f 	cmp	x2, #0x0
-   100cc:	540006c0 	b.eq	101a4 <InfLoop>  // b.none
+   100cc:	540006e0 	b.eq	101a8 <InfLoop>  // b.none
 
 00000000000100d0 <loop0_60>:
    100d0:	7800000e 	sturh	w14, [x0]
@@ -16495,37 +16495,38 @@ Desensamblado de la sección .text:
    10134:	d1000421 	sub	x1, x1, #0x1
    10138:	510101ce 	sub	w14, w14, #0x40
    1013c:	d1000484 	sub	x4, x4, #0x1
-   10140:	b5ffff64 	cbnz	x4, 1012c <loop180_240>
-   10144:	d28003e4 	mov	x4, #0x1f                  	// #31
-   10148:	2a0c03ee 	mov	w14, w12
+   10140:	b4fffba1 	cbz	x1, 100b4 <loop1>
+   10144:	b5ffff44 	cbnz	x4, 1012c <loop180_240>
+   10148:	d28003e4 	mov	x4, #0x1f                  	// #31
+   1014c:	2a0c03ee 	mov	w14, w12
 
-000000000001014c <loop240_300>:
-   1014c:	7800000e 	sturh	w14, [x0]
-   10150:	91000800 	add	x0, x0, #0x2
-   10154:	d1000421 	sub	x1, x1, #0x1
-   10158:	112001ce 	add	w14, w14, #0x800
-   1015c:	d1000484 	sub	x4, x4, #0x1
-   10160:	b5ffff64 	cbnz	x4, 1014c <loop240_300>
-   10164:	d28003e4 	mov	x4, #0x1f                  	// #31
-   10168:	0b0c014e 	add	w14, w10, w12
+0000000000010150 <loop240_300>:
+   10150:	7800000e 	sturh	w14, [x0]
+   10154:	91000800 	add	x0, x0, #0x2
+   10158:	d1000421 	sub	x1, x1, #0x1
+   1015c:	112001ce 	add	w14, w14, #0x800
+   10160:	d1000484 	sub	x4, x4, #0x1
+   10164:	b5ffff64 	cbnz	x4, 10150 <loop240_300>
+   10168:	d28003e4 	mov	x4, #0x1f                  	// #31
+   1016c:	0b0c014e 	add	w14, w10, w12
 
-000000000001016c <loop300_360>:
-   1016c:	7800000e 	sturh	w14, [x0]
-   10170:	91000800 	add	x0, x0, #0x2
-   10174:	d1000421 	sub	x1, x1, #0x1
-   10178:	510005ce 	sub	w14, w14, #0x1
-   1017c:	d1000484 	sub	x4, x4, #0x1
-   10180:	b5ffff64 	cbnz	x4, 1016c <loop300_360>
-   10184:	2a0a03ee 	mov	w14, w10
-   10188:	d28003e4 	mov	x4, #0x1f                  	// #31
-   1018c:	d1000463 	sub	x3, x3, #0x1
-   10190:	b5fffa03 	cbnz	x3, 100d0 <loop0_60>
+0000000000010170 <loop300_360>:
+   10170:	7800000e 	sturh	w14, [x0]
+   10174:	91000800 	add	x0, x0, #0x2
+   10178:	d1000421 	sub	x1, x1, #0x1
+   1017c:	510005ce 	sub	w14, w14, #0x1
+   10180:	d1000484 	sub	x4, x4, #0x1
+   10184:	b5ffff64 	cbnz	x4, 10170 <loop300_360>
+   10188:	2a0a03ee 	mov	w14, w10
+   1018c:	d28003e4 	mov	x4, #0x1f                  	// #31
+   10190:	d1000463 	sub	x3, x3, #0x1
+   10194:	b5fff9e3 	cbnz	x3, 100d0 <loop0_60>
 
-0000000000010194 <lala>:
-   10194:	91000800 	add	x0, x0, #0x2
-   10198:	d1000421 	sub	x1, x1, #0x1
-   1019c:	b5ffffc1 	cbnz	x1, 10194 <lala>
-   101a0:	17ffffc5 	b	100b4 <loop1>
+0000000000010198 <lala>:
+   10198:	91000800 	add	x0, x0, #0x2
+   1019c:	d1000421 	sub	x1, x1, #0x1
+   101a0:	b5ffffc1 	cbnz	x1, 10198 <lala>
+   101a4:	17ffffc4 	b	100b4 <loop1>
 
-00000000000101a4 <InfLoop>:
-   101a4:	14000000 	b	101a4 <InfLoop>
+00000000000101a8 <InfLoop>:
+   101a8:	14000000 	b	101a8 <InfLoop>

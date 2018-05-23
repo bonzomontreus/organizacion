@@ -16,7 +16,7 @@ loop1:
 	mov w14, w10			// inicializa con rojo
 	mov x4, 31 			// var temporal, condicional de salto
 	sub x2, x2, 1
-	mov x3, 2
+	mov x3, 3
 	cmp x2, 0
 	b.EQ InfLoop
 
@@ -77,6 +77,7 @@ loop180_240:
 	//cbz x1, decrementary
 	sub w14, w14, 0x40
 	sub x4, x4, 1
+	cbz x1, loop1	   // If not end row jump keep painting
 	cbnz x4, loop180_240	   // If not end row jump keep painting
 	mov x4, 31
 	mov w14, w12 // color azul
