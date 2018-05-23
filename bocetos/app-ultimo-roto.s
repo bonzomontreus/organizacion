@@ -3,23 +3,22 @@ app:
 	// X0 contiene la direccion base del framebuffer
 
 	//---------------- CODE HERE ------------------------------------
+	// w10 = Color Rojo
+	// w11 = Color verde
+	// w12 = Color azul
+	// x4 =
 
-	mov w10, 0xF800    		// 0xF800 = RED
-	mov w11, 0x07E0 			// 0x07E0 == GREEN
-	mov w12, 0x001F 			// 0x001F == BLUE
 
-	mov x2, 512						// Y Size
-	mov x5, 1							// looper
+	mov w10, 0xF800    // 0xF800 = RED
+	mov w11, 0x07E0 // 0x07E0 == GREEN
+	mov w12, 0x001F // 0x001F == BLUE
 
+	
+	mov x2,511			// Y Size
 loop1:
-	mov x1, 512			// X Size
+	mov x1, 511			// X Size
 	mov w14, w10			// inicializa con rojo
 	mov x4, 31 			// var temporal, condicional de salto
-	sub x2, x2, 1
-	mov x3, 2
-	cmp x2, 0
-	b.EQ InfLoop
-
 
 loop0_60:
 	//verde 0 a 64
@@ -29,14 +28,14 @@ loop0_60:
 	add x0, x0, 2			 	// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
 	//cbz x1, decrementary 	// si me quede sin pantalla, restar 1 a y y volver
-							// a setear x a 512
+							// a setear x a 511
 
 	add w14, w14, 0x40		// incremento en 2 numeros el verde
 	sub x4, x4, 1
 	cbnz x4, loop0_60	   // If not end row jump keep painting
 
 	mov x4, 31
-	//add w14, w10, w11  //suma rojo con verde
+	add w14, w10, w11  //suma rojo con verde
 
 loop60_120:
 	// rojo 32 a 0
@@ -59,7 +58,7 @@ loop120_180:
 	sturh w14, [x0]
 	add x0, x0, 2				// next pixel to right
 	sub x1, x1, 1	   		   // decrement X counter
-	//cbz x1, decrementary
+	cbz x1, decrementary
 	add w14, w14, 0x1
 	sub x4, x4, 1
 	cbnz x4, loop120_180	   // If not end row jump keep painting
@@ -101,32 +100,22 @@ loop300_360:
 	// color a armar rojo = 0xf800
 
 	sturh w14,[x0]
-	add x0, x0, 2				// next pixel to right
-	sub x1, x1, 1	   		   // decrement X counter
+	add x0,x0,2				// next pixel to right
+	sub x1,x1,1	   		   // decrement X counter
 	//cbz x1,decrementary
 	sub w14,w14,0x1
 	sub x4,x4,1
 	cbnz x4,loop300_360	   // If not end row jump keep painting
-	mov w14, w10			// inicializa con rojo
-	mov x4, 31 			// var temporal, condicional de salto
-	sub x3, x3 , 1
-	cbnz x3,loop0_60
 
-filler:
-	sturh w10, [x0]	
-	add x0,x0,2
-	sub x1, x1, 1
-	cbnz x1, filler
-	b loop1
-
-
-//decrementary:
-	//sub x2,x2,1	   			// Decrement Y counter
+decrementary:
+	sub x2,x2,1	    			// Decrement Y counter
 	//mov w14,w10
-	//add x7, x1, x1
-
-	//add x0, x7, x0
-	//cbnz x2,loop1	   // if not last row, jump
+	//mov x8, 512
+	//sub x7, 512, x2
+	add x7, x1, x1
+	//mov x8, 512
+	add x0, x7, x0
+	cbnz x2,loop1	   // if not last row, jump
 
 	//---------------------------------------------------------------
 

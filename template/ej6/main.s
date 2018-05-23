@@ -20,3 +20,4 @@
 mov x0, 0x4008
 lsl x0,x0,16
 add x0,x0,0x100
+b app

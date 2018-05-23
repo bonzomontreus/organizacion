@@ -112,11 +112,10 @@ loop300_360:
 	sub x3, x3 , 1
 	cbnz x3,loop0_60
 
-filler:
-	sturh w10, [x0]	
+lala:
 	add x0,x0,2
 	sub x1, x1, 1
-	cbnz x1, filler
+	cbnz x1, lala
 	b loop1
 
 
