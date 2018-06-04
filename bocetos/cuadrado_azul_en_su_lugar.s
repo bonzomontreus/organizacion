@@ -27,14 +27,15 @@ delay:
 	mov x0,x3
 	mov x4,65536
 	add x0,x0,x4
-	add x0,x0,x4
-	add x0,x0,x4
-	add x0,x0,x4
+	sub x0,x0,944
+	//add x0,x0,x4
+	//add x0,x0,x4
+	//add x0,x0,x4
 	mov w10, 0x1f
 	mov x11,40
 	mov x12,40
 
-	
+
 	// x10 va a ser el punto de inicio
 	// x11 va a ser el ancho --- eje X
 	// x12 va a ser el alto  --- eje Y
@@ -46,8 +47,9 @@ cuadrado:
 	mov x2,x12      // inicio de Y
 
 loop_ini:			// ciclo inicia X
-	add x0 , x0, 1024
-	sub x0, x0, 80
+	//add x0 , x0, 1024
+	//sub x0, x0, 80
+	add x0,x0,944
     mov x1 , x11
 
 loop_pinta:
