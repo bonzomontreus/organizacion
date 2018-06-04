@@ -18,10 +18,11 @@ loop0:
 
 	//---------------------------------------------------------------
 
-	mov x16,65536
+	mov x16,1
+	lsl x16,x16,23 		// delay de mas o menos 5 segundos
 delay:
 	sub x16,x16,1
-	cbnz x16, delay 
+	cbnz x16, delay
 
 	mov x0,x3
 	mov x4,65536
@@ -32,6 +33,8 @@ delay:
 	mov w10, 0x1f
 	mov x11,40
 	mov x12,40
+
+	
 	// x10 va a ser el punto de inicio
 	// x11 va a ser el ancho --- eje X
 	// x12 va a ser el alto  --- eje Y
