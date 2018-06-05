@@ -1,4 +1,4 @@
-// x10 va a ser el punto de inicio
+// x0 va a ser el punto de inicio
 // x11 va a ser el ancho --- eje X
 // x12 va a ser el alto  --- eje Y
 
