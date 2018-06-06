@@ -40,7 +40,7 @@ delay:
 	// x12 va a ser el alto  --- eje Y
 
 cuadrado:
-	mov x3, x0     // inicio del cuadrado
+	// mov x3, x0     // inicio del cuadrado
 	mov x1,x11      // inicio de X
 	mov x2,x12      // inicio de Y
 
@@ -56,7 +56,8 @@ loop_pinta:
 	cbnz x1,loop_pinta	   // If not end row jump
 	sub x2,x2,1	   // Decrement Y counter
 	cbnz x2,loop_ini	   // if not last row, jump
-	add x3, x9, 64
+	add x9, x9, 2
+	mov x3, x9
 	mov x16,65536
 	cbz x2, delay
         // Infinite Loop
