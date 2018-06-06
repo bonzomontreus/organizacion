@@ -4,7 +4,6 @@ app:
 	mov x3,x0 // copia del valor original del fb
 	mov x9,x0
 	mov x7,x0
-	mov w8,0xffff
 
 	//---------------- CODE HERE ------------------------------------
 
@@ -22,7 +21,7 @@ loop0:
 
 	//---------------------------------------------------------------
 
-	mov x16,262144
+	mov x16,65536
 delay:
 	sub x16,x16,1
 	cbnz x16, delay 
@@ -37,9 +36,21 @@ delay:
 	mov x12,40
 	mov x1,16
 	mov x2,40
-	mov x7,x0
-	sub x7,x7,960
 
+
+loop_ini_rojo:			// ciclo inicia X
+	add x7,x7,1024
+	sub x7,x7,64
+    	mov x1,16
+
+loop_pinta_rojo:
+    	sturh w10,[x7]     // Pinta el pixel
+    	add x7,x7,2	   // Next pixel
+	sub x1,x1,1	   // decrement X counter
+	cbnz x1,loop_pinta_rojo	   // If not end row jump
+	sub x2,x2,1	   // Decrement Y counter
+	cbnz x2,loop_ini_rojo	   // if not last row, jump
+	mov x7,x0
 	
 loop_ini:			// ciclo inicia X
 	add x0,x0,1024
@@ -53,29 +64,14 @@ loop_pinta:
 	cbnz x11,loop_pinta	   // If not end row jump
 	sub x12,x12,1	   // Decrement Y counter
 	cbnz x12,loop_ini	   // if not last row, jump
-
-loop_ini_rojo:			// ciclo inicia X
-	add x7,x7,1024
-	sub x7,x7,32
-    	mov x1,16
-
-loop_pinta_rojo:
-    	sturh w8,[x7]     // Pinta el pixel
-    	add x7,x7,2	   // Next pixel
-	sub x1,x1,1	   // decrement X counter
-	cbnz x1,loop_pinta_rojo	   // If not end row jump
-	sub x2,x2,1	   // Decrement Y counter
-	cbnz x2,loop_ini_rojo	   // if not last row, jump
-
-
 	add x9, x9, 32
 	mov x3, x9
-
-
-	mov x16,262144
+	// mov x2,512
+	// mov x0,x7
+	mov x16,65536
 	cbz x12, delay
 
-// ------------------------------------------------------------------------
+
         // Infinite Loop
 InfLoop:
 	b InfLoop
