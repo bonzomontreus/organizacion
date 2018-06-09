@@ -24,6 +24,7 @@ loop0:
 	add x0,x0,80
 	sub x7,x7,1024
 	add x7,x7,32
+	
 	mov x16,65536
 delay:
 	sub x16,x16,1
