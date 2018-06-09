@@ -22,16 +22,13 @@ loop0:
 	mov x16,65536
 delay:
 	sub x16,x16,1
-	cbnz x16, delay 
+	cbnz x16, delay
 
 	mov x0,x3
-	mov x4,65536
-	add x0,x0,x4
-	add x0,x0,x4
-	add x0,x0,x4
-	add x0,x0,x4
-	add x0,x0,552
+	mov x4,262144
 	
+	add x0,x0,552
+
 	mov w10, 0x1f
 	mov x11,40
 	mov x12,40

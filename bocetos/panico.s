@@ -5,11 +5,11 @@ app:
 	//---------------- CODE HERE ------------------------------------
 
 	mov w10, 0xF800    		// 0xF800 = RED
-	mov w11, 0x07E0 			// 0x07E0 == GREEN
-	mov w12, 0x001F 			// 0x001F == BLUE
+	mov w11, 0x07E0 		// 0x07E0 == GREEN
+	mov w12, 0x001F 		// 0x001F == BLUE
 
-	mov x2, 512						// Y Size
-	mov x5, 1							// looper
+	mov x2, 512				// Y Size
+	mov x5, 1				// looper
 
 loop1:
 	mov x1, 512			// X Size
@@ -113,7 +113,7 @@ loop300_360:
 	cbnz x3,loop0_60
 
 filler:
-	sturh w10, [x0]	
+	sturh w10, [x0]
 	add x0,x0,2
 	sub x1, x1, 1
 	cbnz x1, filler
