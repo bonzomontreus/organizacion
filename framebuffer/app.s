@@ -1,3 +1,4 @@
+
 .globl app
 app:
 	// X0 contiene la direccion base del framebuffer
@@ -152,7 +153,7 @@ loop0:
 	mov x6,139
 	mul x5,x5,x6	  // 1024 * 139
 	add x0,x0,x5
-	add x0,x0,508	// 254 * 2 
+	add x0,x0,508	// 254 * 2
 	mov x11, 86		// X
 	mov x12, 8  	// Y
 	mov w13, 0xffe0
@@ -180,6 +181,84 @@ loop0:
 
 	bl cuadrado
 
+	//----------------------------------------------------------------------------
+	//				RAYA 1 (LINEA 2)
+	// x0 va a ser el punto de inicio
+	// x11 va a ser el ancho --- eje X
+	// x12 va a ser el alto  --- eje Y
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,365
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,2
+	mov x11, 86
+	mov x12, 8
+	mov w13, 0xffe0
+	sub x0 , x0, 1024
+    add x0, x0, 80
+
+	bl cuadrado
+
+//----------------------------------------------------------------------------
+//				RAYA 2 (LINEA 2)
+// x0 va a ser el punto de inicio
+// x11 va a ser el ancho --- eje X
+// x12 va a ser el alto  --- eje Y
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,365
+	mul x5,x5,x6	  // 1024 * 139
+	add x0,x0,x5
+	add x0,x0,254	// (86 + 1 + 20 ) * 2
+	mov x11, 86		// X
+	mov x12, 8  	// Y
+	mov w13, 0xffe0
+	sub x0 , x0, 1024
+    add x0, x0, 80
+
+	bl cuadrado
+
+//----------------------------------------------------------------------------
+//				RAYA 3 (LINEA 2)
+// x0 va a ser el punto de inicio
+// x11 va a ser el ancho --- eje X
+// x12 va a ser el alto  --- eje Y
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,365
+	mul x5,x5,x6	  // 1024 * 139
+	add x0,x0,x5
+	add x0,x0,508	// 254 * 2
+	mov x11, 86		// X
+	mov x12, 8  	// Y
+	mov w13, 0xffe0
+	sub x0 , x0, 1024
+    add x0, x0, 80
+
+	bl cuadrado
+//----------------------------------------------------------------------------
+//				RAYA 4 (LINEA 2)
+// x0 va a ser el punto de inicio
+// x11 va a ser el ancho --- eje X
+// x12 va a ser el alto  --- eje Y
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,365
+	mul x5,x5,x6	  // 1024 * 139
+	add x0,x0,x5
+	add x0,x0, 762	// (254 * 3
+	mov x11, 86		// X
+	mov x12, 8  	// Y
+	mov w13, 0xffe0
+	sub x0 , x0, 1024
+  add x0, x0, 80
+
+	bl cuadrado
 
 
 //---------------------------------------------------------------------------
@@ -193,7 +272,7 @@ franja:
 
     mov x1,x11      // inicio de X
     mov x2,x12      // inicio de Y
-	mov w10,w13		// inicio del color
+		mov w10,w13		// inicio del color
 
 loop_ini:			// ciclo inicia X
     mov x1 , x11
@@ -201,7 +280,7 @@ loop_ini:			// ciclo inicia X
 loop_pinta:
     sturh w10,[x0]  // Pinta el pixel
     add x0,x0,2	   // Next pixel
-    sub x1,x1,1	   // decrement X counter
+    sub x1,x1,1	   // dec0rement X counter
     cbnz x1,loop_pinta	   // If not end row jump
     sub x2,x2,1	   // Decrement Y counter
     cbnz x2,loop_ini	   // if not last row, jump

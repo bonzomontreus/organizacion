@@ -21,14 +21,17 @@ loop0:
 
 
 //----------------------------------------------------------------------------
-	mov x11,0
-	mov w13,0xf800
+
+	mov x0,x4
+	mov x11,1
+	mov w13,0x1f
+	sturh w13,[x0]	   // Set color of pixel N
 
 vuelta:
 	mov x0,x4
 	add x11,x11,1
 	mov x12, 30
-
+	mov w13,0x1f
 	bl auto
 
 	mov x16,65536
@@ -36,8 +39,9 @@ delay:
 	sub x16,x16,1
 	cbnz x16, delay
 
-	cmp x11,62
+	cmp x11,32
 	b.ne vuelta
+
 
 
 
@@ -47,60 +51,6 @@ delay:
 //			FIN DE FUNCION
 	b InfLoop
 
-
-//----------------------------------------------------------------------------
-//
-
-
-/*			FUNCION FRANJA
-franja:
-
-    mov x1,x11      // inicio de X
-    mov x2,x12      // inicio de Y
-	mov w10,w13		// inicio del color
-
-loop_ini:			// ciclo inicia X
-    mov x1 , x11
-
-loop_pinta:
-    sturh w10,[x0]  // Pinta el pixel
-    add x0,x0,2	   // Next pixel
-    sub x1,x1,1	   // decrement X counter
-    cbnz x1,loop_pinta	   // If not end row jump
-    sub x2,x2,1	   // Decrement Y counter
-    cbnz x2,loop_ini	   // if not last row, jump
-	ret
-*/
-
-// ------------------------------------------------------------------------
-//				FUNCION CUADRADO RAYAS
-
-// x0 va a ser el punto de inicio
-// x11 va a ser el ancho --- eje X
-// x12 va a ser el alto  --- eje Y
-/*
-cuadrado:
-
-    mov x0, x0     // inicio del cuadrado
-    mov x1,x11      // inicio de X
-    mov x2,x12      // inicio de Y
-	mov w10,w13
-
-loop_0_cuad:			// ciclo inicia X
-    add x0 , x0, 1024
-	sub x0 ,x10,x12
-	sub x0 ,x10,x12
-    mov x1 , x11
-
-loop_1_cuad:
-    sturh w10,[x0]  // Pinta el pixel
-    add x0,x0,2	   // Next pixel
-    sub x1,x1,1	   // decrement X counter
-    cbnz x1,loop_1_cuad	   // If not end row jump
-    sub x2,x2,1	   // Decrement Y counter
-    cbnz x2,loop_0_cuad	   // if not last row, jump
-	ret
-*/
 // --------------------------------------------------------------------------
 //				FUNCION CUADRADO TRANSITIVO PRINCIPIO
 

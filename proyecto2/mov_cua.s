@@ -26,7 +26,7 @@ delay:
 
 	mov x0,x3
 	mov x4,262144
-	
+
 	add x0,x0,552
 
 	mov w10, 0x1f
@@ -47,8 +47,8 @@ loop_ini:			// ciclo inicia X
     	mov x1 , x11
 
 loop_pinta:
-    	sturh w10,[x0]     // Pinta el pixel
-    	add x0,x0,2	   // Next pixel
+    sturh w10,[x0]     // Pinta el pixel
+    add x0,x0,2	   // Next pixel
 	sub x1,x1,1	   // decrement X counter
 	cbnz x1,loop_pinta	   // If not end row jump
 	sub x2,x2,1	   // Decrement Y counter

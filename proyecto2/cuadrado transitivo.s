@@ -7,7 +7,7 @@ app:
 	//---------------- CODE HERE ------------------------------------
 	// 			FUNCION BASE
 
-	mov w10,0xffff    // 0xffff = WHITE
+	mov w10, 0xffff    // 0xffff = WHITE
 	mov x2,512         // Y Size
 loop1:
 	mov x1,512         // X Size
@@ -21,23 +21,26 @@ loop0:
 
 
 //----------------------------------------------------------------------------
-	mov x11,0
-	mov w13,0xf800
-
-vuelta:
+	mov x14,32
 	mov x0,x4
+	sub x0,x0,2
+	mov x11,0
+vuelta:
+	add x0,x0,2
 	add x11,x11,1
 	mov x12, 30
+	mov w13, 0x7e0
+	sub x14,x14,1
 
-	bl auto
+	bl cuadrado
 
 	mov x16,65536
 delay:
 	sub x16,x16,1
 	cbnz x16, delay
 
-	cmp x11,62
-	b.ne vuelta
+	cbz x14 b InfLoop
+	b vuelta
 
 
 
@@ -78,7 +81,7 @@ loop_pinta:
 // x0 va a ser el punto de inicio
 // x11 va a ser el ancho --- eje X
 // x12 va a ser el alto  --- eje Y
-/*
+
 cuadrado:
 
     mov x0, x0     // inicio del cuadrado
@@ -88,8 +91,7 @@ cuadrado:
 
 loop_0_cuad:			// ciclo inicia X
     add x0 , x0, 1024
-	sub x0 ,x10,x12
-	sub x0 ,x10,x12
+    sub x0, x0, 172
     mov x1 , x11
 
 loop_1_cuad:
@@ -100,7 +102,7 @@ loop_1_cuad:
     sub x2,x2,1	   // Decrement Y counter
     cbnz x2,loop_0_cuad	   // if not last row, jump
 	ret
-*/
+
 // --------------------------------------------------------------------------
 //				FUNCION CUADRADO TRANSITIVO PRINCIPIO
 
@@ -110,19 +112,14 @@ loop_1_cuad:
 
 auto:
 
-    //.mov x0, x0     // inicio del cuadrado
+    mov x0, x0     // inicio del cuadrado
     mov x1,x11      // inicio de X
     mov x2,x12      // inicio de Y
 	mov w10,w13
 
-	sub x0 , x0, 1024
-	add x0 ,x10,x11
-	add x0 ,x10,x11
-
 loop_0_auto:			// ciclo inicia X
     add x0 , x0, 1024
-	sub x0 ,x10,x11
-	sub x0 ,x10,x11
+    sub x0, x0, 172
     mov x1 , x11
 
 loop_1_auto:
