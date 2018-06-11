@@ -1,3 +1,4 @@
+
 .globl app
 app:
 	// X0 contiene la direccion base del framebuffer
@@ -29,7 +30,7 @@ pasto:
 		mov x0,x4
 		mov x11, 512
 		mov x12, 60
-		mov w13, 0x25C3
+		mov w13, 0x7e0
 		bl franja
 
 
@@ -46,7 +47,7 @@ pasto:
 		add x0,x0,x5
 		mov x11, 512
 		mov x12, 166
-		mov w13, 0x6B2C
+		mov w13, 0x2084
 
 		bl franja
 
@@ -63,7 +64,7 @@ pasto:
 		add x0,x0,x5
 		mov x11, 512
 		mov x12, 60
-		mov w13, 0x25C3
+		mov w13, 0x7e0
 
 		bl franja
 
@@ -80,7 +81,7 @@ pasto:
 		add x0,x0,x5
 		mov x11, 512
 		mov x12, 166
-		mov w13, 0x6B2C
+		mov w13, 0x2084
 
 		bl franja
 
@@ -97,7 +98,7 @@ pasto:
 		add x0,x0,x5
 		mov x11, 512
 		mov x12, 60
-		mov w13, 0x25C3
+		mov w13, 0x7e0
 
 		bl franja
 
@@ -1036,65 +1037,32 @@ rana:
 		add x0,x0,46
 		sturh w13,[x0]
 
-		cmp x17,2
-		b.ge InfLoop
-		add x17,x17,1
+		cbz x17,InfLoop
+		sub x17,x17,1
 
 //----------------------------------------------------------------------------
 // 		FIN DE RANA
 //----------------------------------------------------------------------------
-//----------------------------------------------------------------------------
-//				PASTO 3
-// x0 va a ser el punto de inicio
-// x11 va a ser el ancho --- eje X
-// x12 va a ser el alto  --- eje Y
 
-	mov x0,x4
-	mov x5,1024
-	mov x6,452
-	mul x5,x5,x6
-	add x0,x0,x5
-	mov x11, 512
-	mov x12, 60
-	mov w13, 0x25C3
-
-	mov x16,65536000
-
-	delay:
-	sub x16,x16,1
-	cbnz x16, delay
-	bl franja
-
-
-
-	mov x8,x4
-	mov x5,412
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,90
-	mov x0,x8
-
-	b rana
-		/*mov x8,x4
-		mov x5,372
+		mov x8,x4
+		mov x5,412
 		mov x6,1024
 		mul x5,x5,x6
 		add x8,x8,x5
 		add x8,x8,90
 		mov x0,x8
-		*/
+		b rana
+
 
 
 
 //---------------------------------------------------------------------------
 //			FIN DE FUNCION
 	b InfLoop
-//---------------------------------------------------------------------------
+
 
 //----------------------------------------------------------------------------
 // 				FUNCION FRANJA
-//---------------------------------------------------------------------------
 franja:
 
     mov x1,x11      // inicio de X
@@ -1112,7 +1080,6 @@ loop_pinta:
     sub x2,x2,1	   // Decrement Y counter
     cbnz x2,loop_ini	   // if not last row, jump
 	ret
-
 // ------------------------------------------------------------------------
 //				FUNCION CUADRADO RAYAS
 
