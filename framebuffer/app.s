@@ -1043,6 +1043,8 @@ rana:
 		b.eq pinta_cuadrado_gris
 		cmp x17,3
 		b.eq borra_ultima_rana
+		cmp x17,4
+		b.eq pinta_quinta_rana
 		b.gt InfLoop
 		//cmp x17,2
 		//b pinta_linea_gris
@@ -1148,6 +1150,37 @@ borra_ultima_rana:	//		BORRA LA TERCERA RANA Y PINTA LA CUARTA
 
 	b rana
 
+pinta_quinta_rana: //		BORRA LA CUARTA RANA Y PINTA LA QUINTA (PASTO)
+	mov x8,x4
+	mov x5,302
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	add x8,x8,96
+	mov x0,x8
+	
+	mov x11, 30
+	mov x12, 36
+	mov w13, 0x6B2C
+	sub x0 , x0, 1024
+	add x0, x0, 60
+
+	mov x16,655360
+
+	delay4:
+	sub x16,x16,1
+	cbnz x16, delay4
+	bl cuadrado
+
+	mov x8,x4
+	mov x5,247
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	add x8,x8,96
+	mov x0,x8
+
+	b rana
 	//b InfLoop
 
 	/*mov x8,x4
