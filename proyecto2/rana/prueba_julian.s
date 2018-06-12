@@ -1057,7 +1057,15 @@ rana:
 		b.eq pinta_decima_rana
 		cmp x17,10
 		b.eq pinta_onceava_rana
-		b.gt InfLoop
+		cmp x17,11
+		b.eq pinta_doceeava_rana
+		mov x0,x4
+		mov x16,6553600
+		delay_final:
+		sub x16,x16,1
+		cbnz x16, delay_final
+
+		b.gt game_over
 		//cmp x17,2
 		//b pinta_linea_gris
 
@@ -1315,7 +1323,7 @@ pinta_onceava_rana:	//		PINTA LA ULTIMA RANA
 
 	mov x11, 30
 	mov x12, 36
-	mov w13, 0x25C3
+	mov w13, 0x6B2C
 	sub x0 , x0, 1024
 	add x0, x0, 60
 
@@ -1327,7 +1335,7 @@ pinta_onceava_rana:	//		PINTA LA ULTIMA RANA
 	bl cuadrado
 
 	mov x8,x4
-	mov x5,170
+	mov x5,100
 	mov x6,1024
 	mul x5,x5,x6
 	add x8,x8,x5
@@ -1337,6 +1345,558 @@ pinta_onceava_rana:	//		PINTA LA ULTIMA RANA
 
 	b rana
 
+pinta_doceeava_rana:	//		PINTA LA ULTIMA RANA
+	mov x0,x8
+
+	mov x11, 30
+	mov x12, 36
+	mov w13, 0x6B2C
+	sub x0 , x0, 1024
+	add x0, x0, 60
+
+	mov x16,655360
+
+	delay11:
+	sub x16,x16,1
+	cbnz x16, delay11
+	bl cuadrado
+
+	mov x8,x4
+	mov x5,20
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	add x8,x8,96
+	add x8,x8,240
+	mov x0,x8
+
+	b rana
+
+game_over:
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,201
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,332
+	mov x11,30
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,60
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,201
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,432
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,201
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,512
+	mov x11,10
+	mov x12,50
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,201
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,592
+	mov x11,10
+	mov x12,50
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,201
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,632
+	mov x11,40
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,80
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,211
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,312
+	mov x11,10
+	mov x12,30
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,211
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,412
+	mov x11,10
+	mov x12,40
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,211
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,472
+	mov x11,10
+	mov x12,40
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,211
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,532
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,211
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,572
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,211
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,632
+	mov x11,10
+	mov x12,40
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,221
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,352
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,221
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,372
+	mov x11,10
+	mov x12,30
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,221
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,432
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,221
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,552
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,221
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,652
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,241
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,332
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,241
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,652
+	mov x11,30
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,60
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,332
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,412
+	mov x11,10
+	mov x12,30
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,492
+	mov x11,10
+	mov x12,30
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,532
+	mov x11,10
+	mov x12,50
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,552
+	mov x11,30
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,60
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,632
+	mov x11,10
+	mov x12,50
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,261
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,652
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,271
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,312
+	mov x11,10
+	mov x12,30
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,271
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,372
+	mov x11,10
+	mov x12,30
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,271
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,692
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,281
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,552
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,281
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,652
+	mov x11,30
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,60
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,291
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,432
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,291
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,472
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,291
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,672
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,301
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,332
+	mov x11,20
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,40
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,301
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,452
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,301
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,552
+	mov x11,30
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,60
+
+	bl cuadrado
+
+	mov x0,x4
+	mov x5,1024
+	mov x6,301
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,692
+	mov x11,10
+	mov x12,10
+	mov w13,0x0
+	sub x0,x0,1024
+	add x0,x0,20
+
+	bl cuadrado
+	mov x16,6553600
+delay_final1:
+	sub x16,x16,1
+	cbnz x16, delay_final1
+	mov x0,x4
+	b app
 
 
 //---------------------------------------------------------------------------
