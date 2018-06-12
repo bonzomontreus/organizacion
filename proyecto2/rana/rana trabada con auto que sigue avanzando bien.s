@@ -1040,7 +1040,7 @@ rana:
 		cmp x17,1
 		b.eq pinta_linea_verde
 		cmp x17,2
-		b.eq pinta_cuadrado_gris
+		b.eq auto
 		cmp x17,3
 		b.eq borra_ultima_rana
 		cmp x17,4
@@ -1095,8 +1095,131 @@ pinta_linea_verde: //			BORRA LA PRIMERA RANA Y PINTA LA SEGUNDA
 
 	b rana
 
+auto:
+//----------------------------------------------------------------------------
+//		PRIMER CUADRADO  (linea 357)
+
+		mov x0,x4
+		mov x5,310
+		mov x6,1024
+		mul x5,x5,x6
+		add x0,x0,x5
+		mov x11,1
+		mov w13,0xf800
+		sub x0,x0,1024
+		add x0,x0,2
+
+repetir:
+		mov x12,30
+
+		bl cuadrado
+
+		mov x16,65536
+delay12:
+	sub x16,x16,1
+	cbnz x16, delay12
+
+		add x0,x0,2
+		add x11,x11,1
+		mov x5, 1024
+		mul x5,x12,x5
+		sub x0,x0,x5
+
+		cmp x11,50
+		b.ne repetir
+
+//---------------------------------------------------------------------------
+//		TRANSICIÓN DEL MEDIO
+
+	mov x0,x4
+	mov x5,310
+	mov x6,1024
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,2
+	mov x11,50		// X
+	mov w13,0xf800
+	sub x0,x0,1024
+	add x0,x0,x11
+	add x0,x0,x11
+
+repetir1:
+	sub x0,x0,2
+	mov x12,30		// Y
+	mov w13,0x6B2C
+	mov x7,x0
+	// x0 apunta al primer pixel arriba a la ziquierda del cuadrado
+	bl cuadrado
+	mov x0,x7
+	//add x0,x0,2
+	mov w13,0xf800
+	add x0, x0, 2
+	bl cuadrado
+
+	mov x16,65536
+delay11:
+	sub x16,x16,1
+	cbnz x16, delay11
+
+	mov x5, 1024
+	mul x5,x12,x5
+	sub x0,x0,x5
+
+	cmp x0,x8
+	add x0,x0,2		//
+	b.ne repetir1
+
+//---------------------------------------------------------------------------
+//		AUTO DESAPARECE
+
+	mov x0,x4
+	mov x5,310
+	mov x6,1024
+	mul x5,x5,x6
+	add x0,x0,x5
+	add x0,x0,924
+	//add x0,x0,2
+	mov x11,1		// X
+	mov w13,0x6B2C
+	sub x0,x0,1024
+	add x0,x0,x11
+	add x0,x0,x11
+
+repetir2:
+	//sub x0,x0,2
+	mov x12,30		// Y
+	mov w13,0x6B2C
+	mov x7,x0
+	//add x11,x11,1
+	// x0 apunta al primer pixel arriba a la ziquierda del cuadrado
+	bl cuadrado
+
+	mov x16,65536
+delay10:
+	sub x16,x16,1
+	cbnz x16, delay10
+
+	mov x5, 1024
+	mul x5,x12,x5
+	sub x0,x0,x5
+
+	cmp x0,x8
+	add x0,x0,2		//
+	b.ne repetir2
+
+// ------------------------------------------------------------------------
+
+
 pinta_cuadrado_gris: //		BORRA LA SEGUNDA RANA Y PINTA LA TERCERA
-	mov x0,x8 	//	Direccion de la rana 2
+	//mov x0,x8 	//	Direccion de la rana 2
+
+	mov x8,x4
+	mov x5,412
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	add x8,x8,96
+	mov x0,x8
 
 	mov x11, 30
 	mov x12, 36
@@ -1298,7 +1421,7 @@ pinta_decima_rana:	//		PINTA LA ULTIMA RANA
 	bl cuadrado
 
 	mov x8,x4
-	mov x5,178
+	mov x5,170
 	mov x6,1024
 	mul x5,x5,x6
 	add x8,x8,x5

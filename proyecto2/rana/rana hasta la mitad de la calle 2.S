@@ -1298,7 +1298,7 @@ pinta_decima_rana:	//		PINTA LA ULTIMA RANA
 	bl cuadrado
 
 	mov x8,x4
-	mov x5,178
+	mov x5,170
 	mov x6,1024
 	mul x5,x5,x6
 	add x8,x8,x5
