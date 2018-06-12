@@ -1045,19 +1045,6 @@ rana:
 		b.eq borra_ultima_rana
 		cmp x17,4
 		b.eq pinta_quinta_rana
-		cmp x17,5
-		b.eq pinta_sexta_rana
-<<<<<<< HEAD
-		cmp x17,6
-		b.eq pinta_septima_rana
-		cmp x17,7
-		b.eq pinta_octava_rana
-		cmp x17,8
-		b.eq pinta_novena_rana
-		cmp x17,9
-		b.eq pinta_decima_rana
-=======
->>>>>>> 950e609518b74836b2a35c0f9cb49dc738c01ef7
 		b.gt InfLoop
 		//cmp x17,2
 		//b pinta_linea_gris
@@ -1099,8 +1086,15 @@ pinta_linea_verde: //			BORRA LA PRIMERA RANA Y PINTA LA SEGUNDA
 	b rana
 
 pinta_cuadrado_gris: //		BORRA LA SEGUNDA RANA Y PINTA LA TERCERA
-	mov x0,x8 	//	Direccion de la rana 2
-
+	//mov x8,x4
+	mov x8,x4
+	mov x5,412
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	add x8,x8,94
+	mov x0,x8
+	//add x0,x0,2
 	mov x11, 30
 	mov x12, 36
 	mov w13, 0x6B2C
@@ -1124,36 +1118,6 @@ pinta_cuadrado_gris: //		BORRA LA SEGUNDA RANA Y PINTA LA TERCERA
 
 	b rana
 
-borra_ultima_rana:	//		BORRA LA TERCERA RANA Y PINTA LA CUARTA
-	mov x0,x8 	//		Direccion de la rana 3
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x6B2C
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay3:
-	sub x16,x16,1
-	cbnz x16, delay3
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,302
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	mov x0,x8
-
-	b rana
-
-<<<<<<< HEAD
-pinta_quinta_rana: //		BORRA LA CUARTA RANA Y PINTA LA QUINTA (PASTO)
-	mov x0,x8
-=======
 borra_ultima_rana:	//		BORRA LA TERCERA RANA Y PINTA LA CUARTA
 	mov x8,x4
 	mov x5,357
@@ -1194,7 +1158,7 @@ pinta_quinta_rana: //		BORRA LA CUARTA RANA Y PINTA LA QUINTA (PASTO)
 	add x8,x8,x5
 	add x8,x8,96
 	mov x0,x8
-
+	
 	mov x11, 30
 	mov x12, 36
 	mov w13, 0x6B2C
@@ -1209,7 +1173,7 @@ pinta_quinta_rana: //		BORRA LA CUARTA RANA Y PINTA LA QUINTA (PASTO)
 	bl cuadrado
 
 	mov x8,x4
-	mov x5,244
+	mov x5,247
 	mov x6,1024
 	mul x5,x5,x6
 	add x8,x8,x5
@@ -1217,200 +1181,27 @@ pinta_quinta_rana: //		BORRA LA CUARTA RANA Y PINTA LA QUINTA (PASTO)
 	mov x0,x8
 
 	b rana
-
-pinta_sexta_rana: //		BORRA LA QUINTA RANA Y PINTA LA SEXTA
-	mov x8,x4
-	mov x5,244
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	mov x0,x8
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x25C3
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay5:
-	sub x16,x16,1
-	cbnz x16, delay5
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,244
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	add x8,x8,50
-	mov x0,x8
-
-	b rana
-
 	//b InfLoop
->>>>>>> 950e609518b74836b2a35c0f9cb49dc738c01ef7
 
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x6B2C
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay4:
-	sub x16,x16,1
-	cbnz x16, delay4
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,240
+	/*mov x8,x4
+	mov x5, 362
 	mov x6,1024
 	mul x5,x5,x6
 	add x8,x8,x5
-	add x8,x8,96
+	add x8,x8,90
 	mov x0,x8
 
-	b rana
+	b rana*/
 
-pinta_sexta_rana: //		BORRA LA QUINTA RANA Y PINTA LA SEXTA
-	mov x0,x8
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x25C3
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay5:
-	sub x16,x16,1
-	cbnz x16, delay5
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,240
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	add x8,x8,70
-	mov x0,x8
-
-	b rana
-
-pinta_septima_rana:	//		PINTA LA SEPTIMA RANA Y BORRA LA SEXTA
-	mov x0,x8
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x25C3
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay6:
-	sub x16,x16,1
-	cbnz x16, delay6
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,240
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	add x8,x8,120
-	mov x0,x8
-
-	b rana
-
-pinta_octava_rana:	//		PINTA LA OCTAVA RANA Y BORRA LA SEPTIMA
-	mov x0,x8
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x25C3
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay7:
-	sub x16,x16,1
-	cbnz x16, delay7
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,240
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	add x8,x8,180
-	mov x0,x8
-
-	b rana
-
-pinta_novena_rana:	//		PINTA LA NOVENA RANA Y BORRA LA OCTAVA
-	mov x0,x8
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x25C3
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay8:
-	sub x16,x16,1
-	cbnz x16, delay8
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,240
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	add x8,x8,240
-	mov x0,x8
-
-	b rana
-
-pinta_decima_rana:	//		PINTA LA ULTIMA RANA
-	mov x0,x8
-
-	mov x11, 30
-	mov x12, 36
-	mov w13, 0x25C3
-	sub x0 , x0, 1024
-	add x0, x0, 60
-
-	mov x16,655360
-
-	delay9:
-	sub x16,x16,1
-	cbnz x16, delay9
-	bl cuadrado
-
-	mov x8,x4
-	mov x5,178
-	mov x6,1024
-	mul x5,x5,x6
-	add x8,x8,x5
-	add x8,x8,96
-	add x8,x8,240
-	mov x0,x8
-
-	b rana
+ //		PINTA LA RANA
+		/*mov x8,x4
+		mov x5,372
+		mov x6,1024
+		mul x5,x5,x6
+		add x8,x8,x5
+		add x8,x8,90
+		mov x0,x8
+		*/
 
 
 
