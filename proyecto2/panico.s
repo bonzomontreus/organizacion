@@ -1520,7 +1520,23 @@ borrar_lengua:
 //---------------------------------------------------------------------------
 //		GAME OVER
 
+
 game_over:
+	mov x8,x4
+	mov x5,83
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	mov x0,x8
+	mov w13, 0x6B2C
+	mov x11,2
+	mov x12,31
+	sub x0,x0,1024
+	add x0,x0, 4
+	bl cuadrado
+
+
+
 
 	mov x0,x4
 	mov x5,1024
@@ -2084,7 +2100,7 @@ delay13:
 //---------------------------------------------------------------------------
 //		TRANSICIÓN DEL MEDIO
 	mov x20,0
-	mov x25,231				// ESTE REGISTRO HACE QUE EL AUTO SE FRENE
+	mov x25,159				// ESTE REGISTRO HACE QUE EL AUTO SE FRENE
 	mov x0,x4
 	mov x5,83
 	mov x6,1024
@@ -2092,10 +2108,13 @@ delay13:
 	add x0,x0,x5
 	add x0,x0,4
 	mov x11,50		// X
-	//mov w13,0xf800
 	sub x0,x0,1024
 	add x0,x0,x11
 	add x0,x0,x11
+
+
+	mov x14,85
+
 
 repetir1:
 	sub x25,x25,1			// RESTO A X25 1
@@ -2106,12 +2125,10 @@ repetir1:
 	// x0 apunta al primer pixel arriba a la ziquierda del cuadrado
 	bl cuadrado
 	mov x0,x7
-	//add x0,x0,2
 	mov w13,0xf800
 	add x0, x0, 4
 	add x0,x0,x20
 	bl cuadrado
-	cbz x25,game_over
 
 	mov x16,65536
 delay14:
@@ -2121,12 +2138,43 @@ delay14:
 	mov x5, 1024
 	mul x5,x12,x5
 	sub x0,x0,x5
-	cmp x0,x8
+	cmp x14,xzr
 	add x0,x0,4
+	sub x14,x14,1
 	add x0,x0,x20
-	b.ne repetir1
+	b.le repetir2
+	b repetir1
 
-	//b game_over
+repetir2:
+	sub x25,x25,1			// RESTO A X25 1
+	sub x0,x0,4
+	mov x12,30		// Y
+	mov w13,0x6B2C
+	mov x7,x0
+	// x0 apunta al primer pixel arriba a la ziquierda del cuadrado
+	bl cuadrado
+	mov x0,x7
+	mov w13,0xf800
+	add x0, x0, 6
+	add x0,x0,x20
+	bl cuadrado
+	cbz x25,game_over
+
+	mov x16,65536
+delay014:
+	sub x16,x16,1
+	cbnz x16, delay014
+
+	mov x5, 1024
+	mul x5,x12,x5
+	sub x0,x0,x5
+	cmp x0,x8
+	add x0,x0,6
+	sub x14,x14,1
+	add x0,x0,x20
+	b.ne repetir2
+
+
 
 //---------------------------------------------------------------------------
 //		AUTO DESAPARECE

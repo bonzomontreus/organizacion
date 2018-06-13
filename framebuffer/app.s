@@ -1479,7 +1479,32 @@ pinta_lengua:
 	sub x16,x16,1
 	cbnz x16, delay0
 	bl cuadrado
+//---------------------------------------------------------------------------
+//		BORRAR LENGUA
+borrar_lengua:
 
+	mov x8,x4
+	mov x5,69
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	add x8,x8,86
+	add x8,x8,212
+	mov x0,x8
+	add x0,x0,20
+	mov x11, 10
+	mov x12, 19
+	mov w13, 0x6B2C
+	sub x0 , x0, 1024
+	add x0, x0, 54
+
+	mov x16,655360
+
+	delay12:
+	sub x16,x16,1
+	cbnz x16, delay12
+
+	bl cuadrado
 
 	mov x8,x4
 	mov x5,85
@@ -1492,7 +1517,26 @@ pinta_lengua:
 
 	b rana
 
+//---------------------------------------------------------------------------
+//		GAME OVER
+
+
 game_over:
+	mov x8,x4
+	mov x5,83
+	mov x6,1024
+	mul x5,x5,x6
+	add x8,x8,x5
+	mov x0,x8
+	mov w13, 0x6B2C
+	mov x11,2
+	mov x12,31
+	sub x0,x0,1024
+	add x0,x0, 4
+	bl cuadrado
+
+
+
 
 	mov x0,x4
 	mov x5,1024
@@ -2055,33 +2099,36 @@ delay13:
 
 //---------------------------------------------------------------------------
 //		TRANSICIÓN DEL MEDIO
-	mov x25,462				// ESTE REGISTRO HACE QUE EL AUTO SE FRENE
+	mov x20,0
+	mov x25,159				// ESTE REGISTRO HACE QUE EL AUTO SE FRENE
 	mov x0,x4
 	mov x5,83
 	mov x6,1024
 	mul x5,x5,x6
 	add x0,x0,x5
-	add x0,x0,2
+	add x0,x0,4
 	mov x11,50		// X
-	//mov w13,0xf800
 	sub x0,x0,1024
 	add x0,x0,x11
 	add x0,x0,x11
 
+
+	mov x14,85
+
+
 repetir1:
 	sub x25,x25,1			// RESTO A X25 1
-	sub x0,x0,2
+	sub x0,x0,4
 	mov x12,30		// Y
 	mov w13,0x6B2C
 	mov x7,x0
 	// x0 apunta al primer pixel arriba a la ziquierda del cuadrado
 	bl cuadrado
 	mov x0,x7
-	//add x0,x0,2
 	mov w13,0xf800
-	add x0, x0, 2
+	add x0, x0, 4
+	add x0,x0,x20
 	bl cuadrado
-	cbz x25,game_over
 
 	mov x16,65536
 delay14:
@@ -2091,11 +2138,43 @@ delay14:
 	mov x5, 1024
 	mul x5,x12,x5
 	sub x0,x0,x5
-	cmp x0,x8
-	add x0,x0,2		//
-	b.ne repetir1
+	cmp x14,xzr
+	add x0,x0,4
+	sub x14,x14,1
+	add x0,x0,x20
+	b.le repetir2
+	b repetir1
 
-	//b game_over
+repetir2:
+	sub x25,x25,1			// RESTO A X25 1
+	sub x0,x0,4
+	mov x12,30		// Y
+	mov w13,0x6B2C
+	mov x7,x0
+	// x0 apunta al primer pixel arriba a la ziquierda del cuadrado
+	bl cuadrado
+	mov x0,x7
+	mov w13,0xf800
+	add x0, x0, 6
+	add x0,x0,x20
+	bl cuadrado
+	cbz x25,game_over
+
+	mov x16,65536
+delay014:
+	sub x16,x16,1
+	cbnz x16, delay014
+
+	mov x5, 1024
+	mul x5,x12,x5
+	sub x0,x0,x5
+	cmp x0,x8
+	add x0,x0,6
+	sub x14,x14,1
+	add x0,x0,x20
+	b.ne repetir2
+
+
 
 //---------------------------------------------------------------------------
 //		AUTO DESAPARECE
